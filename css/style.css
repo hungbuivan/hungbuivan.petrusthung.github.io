@@ -353,3 +353,71 @@ body {
   cursor: pointer;
   z-index: 1000;
 }
+/* Khung chứa ảnh */
+.featured-article, .small-article img, .news-card img {
+  overflow: hidden; /* Cắt phần ảnh thừa khi phóng to */
+  cursor: pointer;
+}
+
+.featured-article img, .small-article img, .news-card img {
+  transition: transform 0.5s ease; /* Tạo hiệu ứng mượt mà */
+}
+
+.featured-article:hover img, .small-article:hover img, .news-card:hover img {
+  transform: scale(1.1); /* Phóng to 10% */
+}
+/* Mặc định ẩn nút ba gạch trên máy tính */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+      display: block; /* Hiện trên mobile */
+  }
+
+  .nav-menu {
+      display: none; /* Ẩn menu chính */
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  }
+
+  .nav-menu.active {
+      display: flex; /* Hiện khi bấm nút */
+  }
+}
+.top-bar {
+  background: #f8f9fa;
+  font-size: 12px;
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+  color: #666;
+}
+.top-bar .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+h3 {
+  font-size: 18px;
+  line-height: 1.3;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+h3:hover {
+  color: #004a99;
+  cursor: pointer;
+}
+
+p {
+  color: #555;
+  line-height: 1.6;
+}

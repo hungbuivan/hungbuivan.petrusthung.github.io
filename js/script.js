@@ -70,3 +70,13 @@ window.onscroll = function() {
 topBtn.onclick = function() {
     window.scrollTo({top: 0, behavior: 'smooth'});
 };
+const menuBtn = document.getElementById('mobile-menu');
+const navMenu = document.querySelector('.nav-menu');
+
+menuBtn.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+});
+const dateSpan = document.getElementById('current-date');
+const now = new Date();
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+dateSpan.innerText = now.toLocaleDateString('vi-VN', options);
