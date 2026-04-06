@@ -150,3 +150,89 @@ body {
   font-weight: 500;
   line-height: 1.4;
 }
+/* Layout chính bên dưới Slider */
+.content-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Tỉ lệ 2/3 và 1/3 */
+  gap: 30px;
+  margin-top: 40px;
+}
+
+/* Tiêu đề mục (Suy niệm / Thông báo) */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #004a99;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+}
+
+.section-title {
+  color: #004a99;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.sub-menu a {
+  text-decoration: none;
+  color: #666;
+  font-size: 13px;
+  margin-left: 15px;
+}
+
+/* Bài viết chính trong mục Suy Niệm */
+.featured-article {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.featured-article img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.featured-article h3 {
+  margin-top: 10px;
+  color: #333;
+}
+
+/* Danh sách bài viết nhỏ */
+.article-list, .notice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.small-article, .notice-item {
+  display: flex;
+  gap: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.small-article p, .notice-item p {
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.notice-item img {
+  border: 1px solid #ddd;
+  padding: 2px;
+}
+@media (max-width: 768px) {
+  .hero-container, .content-grid {
+      flex-direction: column;
+      display: block;
+  }
+  
+  .nav-menu {
+      display: none; /* Tạm ẩn menu trên mobile để build burger menu sau */
+  }
+
+  .left-column, .right-sidebar {
+      width: 100%;
+      margin-bottom: 30px;
+  }
+}
