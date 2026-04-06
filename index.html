@@ -1,41 +1,41 @@
----
-layout: default
-title: Home
----
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clone Website Tin Tức</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Thêm icon từ FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
 
-<h2>🔥 Bài nổi bật</h2>
+    <!-- Header chính -->
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="logo">
+                <img src="assets/logo.png" alt="Logo"> <!-- Cậu nhớ bỏ ảnh logo vào thư mục assets nhé -->
+            </div>
+            
+            <nav class="navbar">
+                <ul class="nav-menu">
+                    <li><a href="#">GIÁO HỘI VIỆT NAM <i class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#">THÔNG BÁO <i class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#">SUY NIỆM <i class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#">THỜI SỰ <i class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#">PHỤNG VỤ <i class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#"><i class="fas fa-ellipsis-h"></i></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<div class="grid">
+    <main class="container">
+        <!-- Section Slider sẽ ở đây -->
+        <section class="hero-section">
+            <p style="text-align: center; padding: 50px;">Nội dung Slider đang chờ build...</p>
+        </section>
+    </main>
 
-  <!-- BÀI LỚN -->
-  {% assign first = site.posts.first %}
-  <div class="big-card">
-    <img src="{{ first.image }}">
-    <h2>
-      <a href="{{ first.url }}">{{ first.title }}</a>
-    </h2>
-  </div>
-
-  <!-- BÀI NHỎ -->
-  {% for post in site.posts offset:1 limit:3 %}
-    <div class="small-card">
-      <img src="{{ post.image }}">
-      <h3>
-        <a href="{{ post.url }}">{{ post.title }}</a>
-      </h3>
-    </div>
-  {% endfor %}
-
-</div>
-
-<hr>
-
-<h2>📰 Tất cả bài viết</h2>
-
-<div class="post-list">
-  {% for post in site.posts %}
-    <div class="post-item">
-      <a href="{{ post.url }}">{{ post.title }}</a>
-    </div>
-  {% endfor %}
-</div>
+</body>
+</html>
