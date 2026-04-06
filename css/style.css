@@ -236,3 +236,22 @@ body {
       margin-bottom: 30px;
   }
 }
+.nav-menu li {
+  position: relative;
+  padding: 10px 15px;
+}
+
+.nav-menu li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: #28a745; /* Màu xanh lá */
+  transition: width 0.3s;
+}
+
+.nav-menu li a:hover::after {
+  width: 100%;
+}
