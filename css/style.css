@@ -597,3 +597,35 @@
   object-fit: cover;
   display: block;
 }
+/* 7. STYLE CHO NÚT BACK TO TOP */
+#backToTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #004a99;
+  color: white;
+  border: none;
+  padding: 15px 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1001; /* Nổi lên trên Footer */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  transition: opacity 0.3s, transform 0.3s;
+  
+  /* Mặc định ẩn bằng cách cho độ mờ là 0 và dịch chuyển xuống 20px */
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none; /* Không thể bấm khi đang ẩn */
+}
+
+/* Khi có class 'show' (JS thêm vào), ta cho nó hiện ra */
+#backToTop.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto; /* Có thể bấm khi đang hiện */
+}
+
+#backToTop:hover {
+  background-color: #003366;
+  transform: scale(1.1); /* Zoom nhẹ khi hover */
+}
