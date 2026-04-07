@@ -679,21 +679,7 @@
         text-align: center;
     }
 }
-/* 7. HIỆU ỨNG LOADING */
-#loader-wrapper {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: #fff;
-  display: none !important; /* Dòng này sẽ xóa sổ cái màn hình loading luôn */
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999; /* Luôn nằm trên cùng */
-  transition: opacity 0.5s;
-  animation: fadeOut 0.5s forwards;
-    animation-delay: 3s; /* Sau 3 giây sẽ tự mờ đi */
 
-}
 
 @keyframes fadeOut {
   from { opacity: 1; visibility: visible; }
