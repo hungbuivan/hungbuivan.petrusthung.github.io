@@ -134,26 +134,21 @@ setInterval(() => {
 // 2. XỬ LÝ NÚT QUAY LẠI ĐẦU TRANG (BACK TO TOP)
 // ==========================================
 
-// Tìm nút Back to Top trong HTML
-const backToTopBtn = document.getElementById('backToTop');
+const backToTopBtn = document.getElementById("backToTop");
 
-// SỰ KIỆN KHI NGƯỜI DÙNG CUỘN TRANG (WINDOW SCROLL)
-window.addEventListener('scroll', () => {
-  // Nếu cuộn xuống dưới 300px (document.documentElement.scrollTop hoặc document.body.scrollTop)
-  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-    // Hiện nút bằng cách thêm class 'show' (hoặc dùng display: block)
-    backToTopBtn.classList.add('show');
-  } else {
-    // Ẩn nút bằng cách xóa class 'show'
-    backToTopBtn.classList.remove('show');
-  }
+window.addEventListener("scroll", function() {
+    // Nếu cuộn xuống hơn 300px
+    if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add("active");
+    } else {
+        backToTopBtn.classList.remove("active");
+    }
 });
 
-// SỰ KIỆN KHI BẤM VÀO NÚT
-backToTopBtn.addEventListener('click', () => {
-  // Cuộn lên đầu trang một cách mượt mà (smooth scrolling)
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
+// Khi bấm vào nút
+backToTopBtn.addEventListener("click", function() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 });
