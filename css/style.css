@@ -78,12 +78,16 @@
     padding: 10px 0;
   }
   
-/* Fix Logo không hiển thị */
-/* 4. Fix logo (Tạm thời dùng placeholder để hiện lên) */
+/* 2. Logo: Đảm bảo không bị quá to hay nhảy lề */
+.logo {
+  flex: 0 0 200px; /* Cố định độ rộng vùng chứa logo */
+  display: flex;
+  align-items: center;
+}
+
 .logo img {
-  height: 50px;
+  max-height: 60px; /* Giới hạn chiều cao logo */
   width: auto;
-  display: block;
 }
   /* Menu điều hướng */
  /* Dàn hàng ngang cho menu chính */
