@@ -169,3 +169,12 @@ mobileMenuBtn.addEventListener('click', () => {
     icon.classList.toggle('fa-bars');
     icon.classList.toggle('fa-times');
 });
+
+// Tắt màn hình loading khi trang web đã tải xong hoàn toàn
+window.addEventListener('load', () => {
+    const loader = document.getElementById('loader-wrapper');
+    loader.style.opacity = '0';
+    setTimeout(() => {
+        loader.style.display = 'none';
+    }, 500); // Đợi hiệu ứng mờ dần rồi mới ẩn hẳn
+});
