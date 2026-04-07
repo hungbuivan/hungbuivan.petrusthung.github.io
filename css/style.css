@@ -690,6 +690,13 @@
   align-items: center;
   z-index: 9999; /* Luôn nằm trên cùng */
   transition: opacity 0.5s;
+  animation: fadeOut 0.5s forwards;
+    animation-delay: 3s; /* Sau 3 giây sẽ tự mờ đi */
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; visibility: visible; }
+  to { opacity: 0; visibility: hidden; }
 }
 
 .loader {
