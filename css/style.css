@@ -62,14 +62,14 @@
     justify-content: space-between;
   }
   
-  .main-header {
-    background: #fff;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border-bottom: 2px solid #e0e0e0;
-  }
+/* Sửa lỗi Menu bị Slider đè lên */
+.main-header {
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 9999; /* Số này phải lớn nhất để luôn nổi trên Slider */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
   
   .header-content {
     display: flex;
@@ -87,11 +87,12 @@
   
   /* Menu điều hướng */
  /* Dàn hàng ngang cho menu chính */
-.nav-menu {
-  display: flex;
-  align-items: center;
+/* Sửa lỗi vẫn còn dấu chấm tròn ở Menu */
+.nav-menu, .dropdown {
+  list-style: none !important; /* Thêm !important để ép trình duyệt bỏ dấu chấm */
+  margin: 0;
+  padding: 0;
 }
-  
   .nav-menu > li {
     position: relative;
     padding: 15px;
@@ -430,21 +431,18 @@
     }
   
     .nav-menu {
-      display: none;
+      display: none; /* Mặc định ẩn trên mobile */
       flex-direction: column;
       position: absolute;
       top: 100%;
       left: 0;
       width: 100%;
       background: #fff;
-      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-      list-style-type: none; /* Quan trọng: để mất dấu chấm */
-
-    }
-  
-    .nav-menu.active {
-      display: flex;
-    }
+  }
+  /* Khi bấm nút Ba gạch, JS sẽ thêm class .active này vào */
+  .nav-menu.active {
+    display: flex !important;
+}
   
     .nav-menu > li {
       padding: 15px;
