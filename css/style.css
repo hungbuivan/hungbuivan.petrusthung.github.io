@@ -79,24 +79,27 @@
   }
   
 /* Fix Logo không hiển thị */
+/* 4. Fix logo (Tạm thời dùng placeholder để hiện lên) */
 .logo img {
-  height: 50px; /* Tăng kích thước từ 5px lên 50px */
+  height: 50px;
   width: auto;
   display: block;
 }
-  
   /* Menu điều hướng */
  /* Dàn hàng ngang cho menu chính */
 /* Sửa lỗi vẫn còn dấu chấm tròn ở Menu */
-.nav-menu, .dropdown {
-  list-style: none !important; /* Thêm !important để ép trình duyệt bỏ dấu chấm */
+/* 2. Ép Menu phải nằm ngang */
+.nav-menu {
+  display: flex; /* Menu dàn hàng ngang */
+  list-style: none !important; /* Bỏ dấu chấm tròn */
   margin: 0;
   padding: 0;
 }
-  .nav-menu > li {
-    position: relative;
-    padding: 15px;
-  }
+
+.nav-menu li {
+  margin-left: 20px; /* Khoảng cách giữa các mục menu */
+  white-space: nowrap; /* Không cho chữ nhảy xuống dòng */
+}
   
   .nav-menu > li > a {
     color: #444;
@@ -680,20 +683,21 @@
     }
 }
 
+/* 3. Ô tìm kiếm nằm gọn giữa */
 .search-box {
+  flex: 1; /* Cho phép ô tìm kiếm co giãn ở giữa */
+  max-width: 400px; /* Không cho nó quá dài */
   display: flex;
   border: 1px solid #ddd;
   border-radius: 20px;
   padding: 5px 15px;
-  margin-left: 20px;
 }
 
 .search-box input {
+  width: 100%;
   border: none;
   outline: none;
-  font-size: 14px;
 }
-
 .search-box button {
   border: none;
   background: none;
