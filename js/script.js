@@ -178,3 +178,16 @@ window.addEventListener('load', () => {
         loader.style.display = 'none';
     }, 500); // Đợi hiệu ứng mờ dần rồi mới ẩn hẳn
 });
+
+// Đảm bảo code chạy sau khi trang đã load xong
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.getElementById('mobile-menu');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            console.log("Đã bấm menu!"); // Dòng này để cậu kiểm tra trong F12
+        });
+    }
+});
