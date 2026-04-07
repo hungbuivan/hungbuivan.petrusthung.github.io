@@ -71,7 +71,7 @@ topBtn.onclick = function() {
     window.scrollTo({top: 0, behavior: 'smooth'});
 };
 const menuBtn = document.getElementById('mobile-menu');
-const navMenu = document.querySelector('.nav-menu');
+
 
 menuBtn.addEventListener('click', () => {
     navMenu.classList.toggle('active');
@@ -151,4 +151,21 @@ backToTopBtn.addEventListener("click", function() {
         top: 0,
         behavior: "smooth"
     });
+});
+
+// ==========================================
+// 3. XỬ LÝ MENU MOBILE (HAMBURGER MENU)
+// ==========================================
+
+const mobileMenuBtn = document.getElementById('mobile-menu');
+const navMenu = document.querySelector('.nav-menu');
+
+mobileMenuBtn.addEventListener('click', () => {
+    // Mỗi lần bấm sẽ tự động thêm hoặc xóa class 'active'
+    navMenu.classList.toggle('active');
+    
+    // Đổi icon từ Ba gạch thành dấu X cho đẹp
+    const icon = mobileMenuBtn.querySelector('i');
+    icon.classList.toggle('fa-bars');
+    icon.classList.toggle('fa-times');
 });

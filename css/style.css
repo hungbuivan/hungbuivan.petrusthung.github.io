@@ -629,25 +629,55 @@
   background-color: #003366;
   transform: scale(1.1); /* Zoom nhẹ khi hover */
 }
-#backToTop {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background-color: #004a99;
-  color: white;
-  border: none;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 9999; /* Đẩy lên trên cùng tất cả */
-  display: none; /* MẶC ĐỊNH ẨN */
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
 
-/* Class này sẽ được JS thêm vào khi cuộn chuột */
-#backToTop.active {
-  display: flex !important; /* HIỆN LÊN */
+/* ==========================================
+   6. RESPONSIVE: CHO ĐIỆN THOẠI & TABLET
+   ========================================== */
+
+   @media (max-width: 768px) {
+    /* 1. Cho 2 cột (70/30) xếp chồng lên nhau thành 1 cột */
+    .content-grid {
+        grid-template-columns: 1fr; /* Chuyển về 1 cột duy nhất */
+        gap: 20px;
+    }
+
+    /* 2. Ẩn menu chính để chuẩn bị làm nút bấm (Hamburger) */
+    .nav-menu {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        z-index: 999;
+    }
+
+    /* Khi Menu được kích hoạt (bằng JS) */
+    .nav-menu.active {
+        display: flex;
+    }
+
+    /* 3. Hiện nút bấm Menu (Ba gạch) */
+    .menu-toggle {
+        display: block !important;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    /* 4. Điều chỉnh Slider cho nhỏ lại phù hợp màn hình dọc */
+    .slide-item img {
+        height: 250px; /* Giảm chiều cao ảnh trên mobile */
+    }
+
+    .slide-caption h2 {
+        font-size: 18px;
+    }
+
+    /* 5. Footer xếp dọc */
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
 }
