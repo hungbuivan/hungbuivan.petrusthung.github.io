@@ -80,3 +80,52 @@ const dateSpan = document.getElementById('current-date');
 const now = new Date();
 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 dateSpan.innerText = now.toLocaleDateString('vi-VN', options);
+
+// ==========================================
+// 1. XỬ LÝ SLIDER (BANNER CHẠY)
+// ==========================================
+
+// Tìm các phần tử trong HTML
+const mainSlider = document.querySelector('.main-slider');
+// Tìm TẤT CẢ các slide-item
+const slides = mainSlider.querySelectorAll('.slide-item'); 
+
+
+// Biến lưu vị trí slide hiện tại (bắt đầu từ 0)
+
+
+// HÀM HIỂN THỊ SLIDE THEO CHỈ SỐ (INDEX)
+function showSlide(index) {
+  // Nếu index vượt quá số lượng slide, quay về 0
+  if (index >= slides.length) {
+    currentIndex = 0;
+  } 
+  // Nếu index nhỏ hơn 0, quay về slide cuối cùng
+  else if (index < 0) {
+    currentIndex = slides.length - 1;
+  } 
+  // Nếu nằm trong khoảng, gán lạicurrentIndex
+  else {
+    currentIndex = index;
+  }
+
+  // DI CHUYỂN SLIDE: Sử dụng thuộc tính transform: translateX
+  // Mỗi slide chiếm 100% chiều rộng, nên ta dịch chuyển một khoảng là -currentIndex * 100
+  slides[0].parentNode.style.transform = `translateX(${-currentIndex * 100}%)`;
+  // Chú ý: Cần thêm CSS cho slides[0].parentNode để hiệu ứng mượt mà
+}
+
+// SỰ KIỆN KHI BẤM NÚT NEXT
+nextBtn.addEventListener('click', () => {
+  showSlide(currentIndex + 1);
+});
+
+// SỰ KIỆN KHI BẤM NÚT PREV
+prevBtn.addEventListener('click', () => {
+  showSlide(currentIndex - 1);
+});
+
+// TỰ ĐỘNG CHUYỂN SLIDE SAU 5 GIÂY (5000 mili giây)
+setInterval(() => {
+  showSlide(currentIndex + 1);
+}, 5000);

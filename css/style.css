@@ -572,3 +572,28 @@
   font-size: 12px;
   border-top: 1px solid rgba(255,255,255,0.1);
 }
+/* 5. STYLE CHO SLIDER */
+.main-slider {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden; /* Giấu các ảnh nằm ngoài khung */
+}
+
+/* Khung chứa các slide, ta sẽ cho nó flex ngang và thêm hiệu ứng transition */
+.slider-wrapper {
+  display: flex;
+  transition: transform 0.5s ease; /* Hiệu ứng di chuyển mượt mà */
+  width: 100%;
+}
+
+.slide-item {
+  flex: 0 0 100%; /* Mỗi slide chiếm 100% chiều rộng của wrapper */
+  position: relative;
+}
+
+.slide-item img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  display: block;
+}
