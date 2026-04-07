@@ -680,25 +680,6 @@
     }
 }
 
-
-@keyframes fadeOut {
-  from { opacity: 1; visibility: visible; }
-  to { opacity: 0; visibility: hidden; }
-}
-
-.loader {
-  border: 8px solid #f3f3f3;
-  border-top: 8px solid #004a99; /* Màu xanh của cậu */
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
 .search-box {
   display: flex;
   border: 1px solid #ddd;
