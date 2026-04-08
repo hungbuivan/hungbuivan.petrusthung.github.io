@@ -100,37 +100,37 @@
   padding: 0;
 }
 
-.nav-menu li {
-  margin-left: 20px; /* Khoảng cách giữa các mục menu */
-  white-space: nowrap; /* Không cho chữ nhảy xuống dòng */
+/* Chỉ đổi màu khi di chuột vào đúng cái chữ trong Menu */
+.nav-menu li a {
+  text-decoration: none;
+  color: #004a99; /* Màu mặc định là xanh */
+  transition: all 0.3s ease; /* Hiệu ứng đổi màu mượt mà */
 }
-  
-  .nav-menu > li > a {
-    color: #444;
-    font-weight: 600;
-    font-size: 13px;
-    text-transform: uppercase;
-  }
-  
-  .nav-menu li a:hover {
-    color: #007bff;
-  }
-  
-  /* Hiệu ứng gạch chân */
-  .nav-menu > li > a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 3px;
-    background-color: #28a745;
-    transition: width 0.3s;
-  }
-  
-  .nav-menu > li:hover > a::after {
-    width: 100%;
-  }
+
+.nav-menu li a:hover {
+  color: #ff0000; /* Ví dụ: Khi hover vào chữ sẽ đổi sang màu đỏ hoặc màu xanh đậm hơn */
+  background: none; /* Đảm bảo không bị hiện màu nền */
+}
+
+/* Nếu muốn có cái gạch chân chạy dưới chữ khi hover cho xịn */
+.nav-menu li a {
+  position: relative;
+}
+
+.nav-menu li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #004a99;
+  transition: width 0.3s;
+}
+
+.nav-menu li a:hover::after {
+  width: 100%; /* Gạch chân dài ra khi di chuột vào */
+}
   
   /* Dropdown Menu */
   .dropdown {
