@@ -98,38 +98,46 @@
   list-style: none !important; /* Bỏ dấu chấm tròn */
   margin: 0;
   padding: 0;
+  align-items: center; /* Căn giữa các mục theo chiều dọc */
 }
 
-/* Chỉ đổi màu khi di chuột vào đúng cái chữ trong Menu */
-.nav-menu li a {
-  text-decoration: none;
-  color: #004a99; /* Màu mặc định là xanh */
-  transition: all 0.3s ease; /* Hiệu ứng đổi màu mượt mà */
+.nav-menu li {
+  margin-left: 20px; /* Khoảng cách giữa các mục menu */
+  white-space: nowrap; /* Không cho chữ nhảy xuống dòng */
+  position: relative; /* QUAN TRỌNG: Làm điểm tựa cho gạch chân */
 }
 
-.nav-menu li a:hover {
-  color: #ff0000; /* Ví dụ: Khi hover vào chữ sẽ đổi sang màu đỏ hoặc màu xanh đậm hơn */
-  background: none; /* Đảm bảo không bị hiện màu nền */
+.nav-menu > li > a {
+  display: inline-block; /* Để padding và margin hoạt động tốt */
+  padding: 10px 0; /* Tạo vùng bấm rộng hơn cho menu */
+  color: #444;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  text-decoration: none; /* Bỏ gạch chân mặc định của trình duyệt */
+  transition: color 0.3s; /* Hiệu ứng đổi màu chữ mượt mà */
 }
 
-/* Nếu muốn có cái gạch chân chạy dưới chữ khi hover cho xịn */
-.nav-menu li a {
-  position: relative;
+/* Khi hover vào đúng thẻ a hoặc li, chỉ thẻ đó mới đổi màu */
+.nav-menu li:hover > a {
+  color: #007bff; /* Màu xanh chỉ hiện ở mục đang hover */
 }
 
-.nav-menu li a::after {
+/* Hiệu ứng gạch chân */
+.nav-menu > li > a::after {
   content: '';
   position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -5px;
+  bottom: 0; /* Nằm sát đáy của thẻ li */
   left: 0;
-  background-color: #004a99;
-  transition: width 0.3s;
+  width: 0;
+  height: 3px;
+  background-color: #28a745; /* Đổi sang màu xanh cho đồng bộ với màu chữ */
+  transition: width 0.3s ease;
 }
 
-.nav-menu li a:hover::after {
-  width: 100%; /* Gạch chân dài ra khi di chuột vào */
+/* Chỉ mục đang hover mới dài thanh gạch chân ra */
+.nav-menu li:hover > a::after {
+  width: 100%;
 }
   
   /* Dropdown Menu */
@@ -190,11 +198,18 @@
   }
   
   .slide-item img {
-    width: 100%;
-    display: block;
-    transition: transform 0.5s ease;
-  }
-  
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    object-fit: cover; /* Giúp ảnh không bị méo */
+    object-position: center; /* Lấy phần chính giữa ảnh */
+    
+    /* CÁCH LÀM NÉT ẢNH CHÍNH */
+    image-rendering: -webkit-optimize-contrast; /* Dành cho Safari và các trình duyệt WebKit */
+    image-rendering: crisp-edges;               /* Dành cho Firefox và Edge */
+    image-rendering: -moz-crisp-edges;          /* Dành cho Firefox cũ */
+    will-change: transform;                     /* Giúp trình duyệt tối ưu hóa chuyển động mà không làm mờ ảnh */
+}
   .slide-item:hover img {
     transform: scale(1.05);
   }
@@ -577,31 +592,7 @@
   font-size: 12px;
   border-top: 1px solid rgba(255,255,255,0.1);
 }
-/* 5. STYLE CHO SLIDER */
-.main-slider {
-  position: relative;
-  border-radius: 8px;
-  overflow: hidden; /* Giấu các ảnh nằm ngoài khung */
-}
 
-/* Khung chứa các slide, ta sẽ cho nó flex ngang và thêm hiệu ứng transition */
-.slider-wrapper {
-  display: flex;
-  transition: transform 0.5s ease; /* Hiệu ứng di chuyển mượt mà */
-  width: 100%;
-}
-
-.slide-item {
-  flex: 0 0 100%; /* Mỗi slide chiếm 100% chiều rộng của wrapper */
-  position: relative;
-}
-
-.slide-item img {
-  width: 100%;
-  height: 450px;
-  object-fit: cover;
-  display: block;
-}
 /* 7. STYLE CHO NÚT BACK TO TOP */
 #backToTop {
   position: fixed;
@@ -712,4 +703,255 @@
 /* Ẩn search box trên mobile nếu quá chật */
 @media (max-width: 768px) {
   .search-box { display: none; }
+}
+/* 1. Khung chứa phải có chiều cao xác định */
+/* Khung chứa cố định */
+/* 1. Khung chứa: Đây là "cái lồng" để nhốt ảnh vào */
+.slider-container {
+  width: 100%;
+  max-width: 1200px; /* Giới hạn độ rộng tối đa */
+  height: 450px;     /* CHIỀU CAO CỐ ĐỊNH - Cậu có thể chỉnh số này (ví dụ 400px hoặc 500px) */
+  margin: 20px auto;
+  overflow: hidden;  /* CẮT BỎ phần ảnh thừa bị to ra ngoài */
+  position: relative;
+  border-radius: 10px;
+}
+
+/* 2. Wrapper chứa các slide */
+.slider-wrapper {
+  display: flex;
+  width: 200%; /* Vì có 2 slide (mỗi slide chiếm 50% của 200% là 100% khung nhìn) */
+  height: 100%;
+  animation: slideAuto 10s infinite;
+}
+
+/* 3. Từng mục Slide */
+.slide-item {
+  width: 50%; /* 100% của khung nhìn slider-container */
+  height: 100%;
+  position: relative;
+}
+
+/* 4. ÉP ẢNH (Phần quan trọng nhất) */
+.slide-item img {
+  width: 100% !important;  /* Ép chiều rộng bằng khung */
+  height: 100% !important; /* Ép chiều cao bằng khung */
+  display: block;
+  object-fit: cover;      /* GIỮ TỈ LỆ: Ảnh sẽ tự cắt bớt rìa để vừa khít khung mà KHÔNG BỊ MÉO */
+  object-position: center; /* Luôn lấy phần chính giữa của ảnh */
+}
+
+/* 5. Chỉnh lại Caption để không bị che ảnh */
+.slide-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px 20px;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: white;
+  z-index: 10;
+}
+
+/* Animation trượt */
+@keyframes slideAuto {
+  0%, 45% { transform: translateX(0); }
+  50%, 95% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* Tổng quan khu vực tin tức */
+.news-section {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.section-title {
+  border-left: 5px solid #004a99;
+  padding-left: 15px;
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 24px;
+}
+
+/* Chia bố cục: 2 phần 3 cho tin lớn, 1 phần 3 cho tin phụ */
+.news-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+}
+
+/* Style cho các ô tin (Card) */
+.news-card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.news-card img {
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Tin lớn */
+.big-card img {
+  height: 400px;
+}
+
+.news-info {
+  padding: 20px;
+}
+
+.category {
+  color: #004a99;
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.news-info h3 {
+  margin: 10px 0;
+  font-size: 22px;
+}
+
+/* Tin phụ bên phải */
+.news-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.small-card {
+  display: flex; /* Cho ảnh và chữ nằm cạnh nhau */
+  gap: 15px;
+}
+
+.small-card img {
+  width: 120px;
+  height: 90px;
+  border-radius: 4px;
+}
+
+.small-card .news-info {
+  padding: 0;
+}
+
+.small-card h4 {
+  margin: 0 0 5px 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.date {
+  color: #888;
+  font-size: 12px;
+}
+
+/* Background tối cho phần video */
+.video-gallery-section {
+  background: #bdadad;
+  padding: 50px 0;
+  color: white;
+  margin-top: 40px;
+}
+
+.white-text {
+  color: white !important;
+  border-left-color: #ffcc00 !important; /* Đổi màu gạch đầu dòng cho nổi */
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 25px;
+  margin-top: 20px;
+}
+
+/* Hiệu ứng Video chính */
+.video-placeholder {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.video-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.video-placeholder:hover img {
+  transform: scale(1.05);
+}
+
+/* Nút Play nằm giữa ảnh */
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background: rgba(255, 204, 0, 0.9);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  color: #000;
+  transition: 0.3s;
+}
+
+.video-placeholder:hover .play-button {
+  background: #fff;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Danh sách video nhỏ */
+.video-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.video-item-small {
+  display: flex;
+  gap: 15px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.video-item-small:hover {
+  background: #333;
+}
+
+.video-item-small .thumb {
+  width: 100px;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+.video-item-small .thumb img {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.video-item-small p {
+  font-size: 13px;
+  margin: 0;
 }
